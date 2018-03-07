@@ -19,6 +19,18 @@ public class SpringContext implements ApplicationContextAware {
 	}
 
 	public <T> T getBean(Class<T> clazz) {
-		return applicationContext.getBean(clazz);
+		try {
+			return applicationContext.getBean(clazz);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	public <T> T getBean(String name, Class<T> clazz) {
+		try {
+			return applicationContext.getBean(name, clazz);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 }

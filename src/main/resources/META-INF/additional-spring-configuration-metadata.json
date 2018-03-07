@@ -1,70 +1,5 @@
 {"properties": [
   {
-    "name": "spring.druid.initialSize",
-    "type": "java.lang.Integer",
-    "description": "A description for 'spring.druid.initialSize'"
-  },
-  {
-    "name": "spring.druid.minIdle",
-    "type": "java.lang.Integer",
-    "description": "A description for 'spring.druid.minIdle'"
-  },
-  {
-    "name": "spring.druid.maxActive",
-    "type": "java.lang.Integer",
-    "description": "A description for 'spring.druid.maxActive'"
-  },
-  {
-    "name": "spring.druid.maxWait",
-    "type": "java.lang.Integer",
-    "description": "A description for 'spring.druid.maxWait'"
-  },
-  {
-    "name": "spring.druid.timeBetweenEvictionRunsMillis",
-    "type": "java.lang.Integer",
-    "description": "A description for 'spring.druid.timeBetweenEvictionRunsMillis'"
-  },
-  {
-    "name": "spring.druid.minEvictableIdleTimeMillis",
-    "type": "java.lang.Integer",
-    "description": "A description for 'spring.druid.minEvictableIdleTimeMillis'"
-  },
-  {
-    "name": "spring.druid.validationQuery",
-    "type": "java.lang.String",
-    "description": "A description for 'spring.druid.validationQuery'"
-  },
-  {
-    "name": "spring.druid.testWhileIdle",
-    "type": "java.lang.Boolean",
-    "description": "A description for 'spring.druid.testWhileIdle'"
-  },
-  {
-    "name": "spring.druid.testOnBorrow",
-    "type": "java.lang.Boolean",
-    "description": "A description for 'spring.druid.testOnBorrow'"
-  },
-  {
-    "name": "spring.druid.testOnReturn",
-    "type": "java.lang.Boolean",
-    "description": "A description for 'spring.druid.testOnReturn'"
-  },
-  {
-    "name": "spring.druid.poolPreparedStatements",
-    "type": "java.lang.Boolean",
-    "description": "A description for 'spring.druid.poolPreparedStatements'"
-  },
-  {
-    "name": "spring.druid.maxPoolPreparedStatementPerConnectionSize",
-    "type": "java.lang.Integer",
-    "description": "A description for 'spring.druid.maxPoolPreparedStatementPerConnectionSize'"
-  },
-  {
-    "name": "spring.druid.asyncInit",
-    "type": "java.lang.Boolean",
-    "description": "A description for 'spring.druid.asyncInit'"
-  },
-  {
     "name": "mitie.feature.filename",
     "type": "java.lang.String",
     "description": "A description for 'mitie.feature.filename'"
@@ -73,10 +8,5 @@
     "name": "mitie.category.filename",
     "type": "java.lang.String",
     "description": "A description for 'mitie.category.filename'"
-  },
-  {
-    "name": "mitie.namedentity.filename",
-    "type": "java.lang.String",
-    "description": "A description for 'mitie.namedentity.filename'"
   }
 ]}
