@@ -1,5 +1,6 @@
 package com.yyd.semantic.common.impl;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.ybnf.compiler.ICompiler;
@@ -11,9 +12,10 @@ import com.yyd.semantic.common.SemanticMatching;
 public class SemanticScene implements SemanticMatching<String> {
 	private static ICompiler compiler = null;
 
-	public SemanticScene() throws Exception {
+	public SemanticScene(@Value("${mitie.feature.filename}") String feature,
+			@Value("${mitie.category.filename}") String category) throws Exception {
 		if (compiler == null) {
-			compiler = new MITIECompiler("", "", "");
+			compiler = new MITIECompiler(category, feature);
 		}
 	}
 

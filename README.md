@@ -1,2 +1,2 @@
-# yyd-semantic
-YYD Semantic Service
+# yyd-semantics
+YYD Semantic Web Service

@@ -1,2 +1,6 @@
 poem:
-  - '背 [诵] [一] 首 [$author 的] ($poetryTitle | 诗)'
+  - '背 [诵] [一] 首 [$poetryAuthor 的] ($poetryTitle | 诗)'
+next:
+  - '$poetrySentence [[的] 下 [一] 句]'
+prev:
+  - '$poetrySentence [的] 上 [一] 句'

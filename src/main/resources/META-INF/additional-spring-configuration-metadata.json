@@ -63,5 +63,20 @@
     "name": "spring.druid.asyncInit",
     "type": "java.lang.Boolean",
     "description": "A description for 'spring.druid.asyncInit'"
+  },
+  {
+    "name": "mitie.feature.filename",
+    "type": "java.lang.String",
+    "description": "A description for 'mitie.feature.filename'"
+  },
+  {
+    "name": "mitie.category.filename",
+    "type": "java.lang.String",
+    "description": "A description for 'mitie.category.filename'"
+  },
+  {
+    "name": "mitie.namedentity.filename",
+    "type": "java.lang.String",
+    "description": "A description for 'mitie.namedentity.filename'"
   }
 ]}
