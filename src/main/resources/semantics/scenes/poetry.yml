@@ -1,6 +1,16 @@
-poem:
-  - '背 [诵] [一] 首 [$poetryAuthor 的] ($poetryTitle | 诗)'
-next:
-  - '$poetrySentence [[的] 下 [一] 句]'
-prev:
-  - '$poetrySentence [的] 上 [一] 句'
+searchByAuthor:
+  - '[[[我] 想|要] 听|背|来|背诵] [首|个]|[一首|一个] $poetryAuthor [的] (诗|诗词)'
+  - '$poetryAuthor [的] (诗|诗词) [背|来|背诵] [首|个]|[一首|一个]'
+searchByTitle:
+  - '[[[我] 想|要] 听|背|来|背诵] [首|个]|[一首|一个] $poetryTitle'
+  - '$poetryTitle [背|来|背诵] [首|个]|[一首|一个]'
+searchByAuthorAndTitle:
+  - '[背|来|背诵] [首|个]|[一首|一个] $poetryAuthor [的] $poetryTitle'
+nextSent:
+  - '[[[我] 想|要] 听|背|背诵] $poetrySentence [的] [下句|下一句]'
+preSent:
+  - '[[[我] 想|要] 听|背|背诵] $poetrySentence [的] (上句|上一句)'
+firstSent:
+  - '[[[我] 想|要] 听|背|背诵] $poetryTitle [的] (首句|第一句)'
+lastSent:
+  - '[[[我] 想|要] 听|背|背诵] $poetryTitle [的] (末句|最后一句)'
