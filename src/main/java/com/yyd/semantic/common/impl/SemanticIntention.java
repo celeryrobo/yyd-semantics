@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 import com.ybnf.compiler.beans.YbnfCompileResult;
 import com.ybnf.compiler.impl.LuceneCompiler;
-import com.yyd.semantic.common.FileUtils;
 import com.yyd.semantic.common.SemanticMatching;
+import com.yyd.service.common.FileUtils;
 
 @Component("SemanticIntention")
 public class SemanticIntention implements SemanticMatching<YbnfCompileResult> {
