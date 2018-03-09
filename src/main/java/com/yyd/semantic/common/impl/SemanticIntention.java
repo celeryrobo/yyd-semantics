@@ -15,11 +15,13 @@ import com.yyd.service.common.FileUtils;
 
 @Component("SemanticIntention")
 public class SemanticIntention implements SemanticMatching<YbnfCompileResult> {
-	private static LuceneCompiler compiler = null;
+	private final static Map<String, LuceneCompiler> COMPILERS = new HashMap<>();
+	private static LuceneCompiler luceneCompiler = null;
+	private LuceneCompiler compiler = null;
 
 	@SuppressWarnings("unchecked")
 	public SemanticIntention() throws Exception {
-		if(compiler == null) {
+		if (luceneCompiler == null) {
 			Map<String, Map<String, List<String>>> sceneIntentTemplates = new HashMap<>();
 			String path = FileUtils.getResourcePath() + "semantics/scenes/";
 			List<File> files = FileUtils.listFiles(path, ".yml");
@@ -28,12 +30,16 @@ public class SemanticIntention implements SemanticMatching<YbnfCompileResult> {
 				Map<String, List<String>> intents = Yaml.loadType(file, HashMap.class);
 				sceneIntentTemplates.put(name, intents);
 			}
-			compiler = new LuceneCompiler(sceneIntentTemplates);
+			luceneCompiler = new LuceneCompiler(sceneIntentTemplates);
 		}
 	}
-	
+
 	public SemanticIntention service(String service) throws Exception {
-		compiler.service(service);
+		compiler = COMPILERS.get(service);
+		if (compiler == null) {
+			compiler = new LuceneCompiler(service);
+			COMPILERS.put(service, compiler);
+		}
 		return this;
 	}
 
