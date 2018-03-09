@@ -47,7 +47,7 @@ public class SemanticIntention implements SemanticMatching<YbnfCompileResult> {
 			System.out.println("Semantic Intention Run Time :" + (System.currentTimeMillis() - startTs) + " Service :"
 					+ result.getService());
 		} catch (Exception e) {
-			System.err.println(e);
+			System.err.println("语义处理失败！");
 		}
 		return result;
 	}
