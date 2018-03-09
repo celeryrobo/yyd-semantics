@@ -15,32 +15,49 @@ import com.yyd.service.common.FileUtils;
 
 @Component("SemanticIntention")
 public class SemanticIntention implements SemanticMatching<YbnfCompileResult> {
-	private final static Map<String, LuceneCompiler> COMPILERS = new HashMap<>();
+	private final static Map<String, SemanticIntention> INTENTIONS = new HashMap<>();
 	private static LuceneCompiler luceneCompiler = null;
 	private LuceneCompiler compiler = null;
 
 	@SuppressWarnings("unchecked")
+	public static void init() throws Exception {
+		Map<String, Map<String, List<String>>> sceneIntentTemplates = new HashMap<>();
+		String path = FileUtils.getResourcePath() + "semantics/scenes/";
+		List<File> files = FileUtils.listFiles(path, ".yml");
+		for (File file : files) {
+			String name = file.getName().replace(".yml", "");
+			Map<String, List<String>> intents = Yaml.loadType(file, HashMap.class);
+			sceneIntentTemplates.put(name, intents);
+		}
+		luceneCompiler = new LuceneCompiler(sceneIntentTemplates);
+	}
+
 	public SemanticIntention() throws Exception {
 		if (luceneCompiler == null) {
-			Map<String, Map<String, List<String>>> sceneIntentTemplates = new HashMap<>();
-			String path = FileUtils.getResourcePath() + "semantics/scenes/";
-			List<File> files = FileUtils.listFiles(path, ".yml");
-			for (File file : files) {
-				String name = file.getName().replace(".yml", "");
-				Map<String, List<String>> intents = Yaml.loadType(file, HashMap.class);
-				sceneIntentTemplates.put(name, intents);
+			synchronized (INTENTIONS) {
+				if (luceneCompiler == null) {
+					init();
+				}
 			}
-			luceneCompiler = new LuceneCompiler(sceneIntentTemplates);
 		}
 	}
 
+	public SemanticIntention(String service) throws Exception {
+		this();
+		compiler = new LuceneCompiler(service);
+	}
+
 	public SemanticIntention service(String service) throws Exception {
-		compiler = COMPILERS.get(service);
-		if (compiler == null) {
-			compiler = new LuceneCompiler(service);
-			COMPILERS.put(service, compiler);
+		SemanticIntention intention = INTENTIONS.get(service);
+		if (intention == null) {
+			synchronized (INTENTIONS) {
+				if (intention == null) {
+					intention = new SemanticIntention(service);
+					INTENTIONS.put(service, intention);
+				}
+			}
 		}
-		return this;
+		return intention;
 	}
 
 	@Override
