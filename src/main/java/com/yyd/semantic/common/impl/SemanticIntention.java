@@ -11,11 +11,11 @@ import org.springframework.stereotype.Component;
 import com.ybnf.compiler.beans.YbnfCompileResult;
 import com.ybnf.compiler.impl.LuceneCompiler;
 import com.yyd.semantic.common.SemanticMatching;
-import com.yyd.service.common.FileUtils;
+import com.yyd.service.utils.FileUtils;
 
 @Component("SemanticIntention")
 public class SemanticIntention implements SemanticMatching<YbnfCompileResult> {
-	private final static Map<String, SemanticIntention> INTENTIONS = new HashMap<>();
+	private final static Map<String, SemanticMatching<YbnfCompileResult>> INTENTIONS = new HashMap<>();
 	private static LuceneCompiler luceneCompiler = null;
 	private LuceneCompiler compiler = null;
 
@@ -47,17 +47,22 @@ public class SemanticIntention implements SemanticMatching<YbnfCompileResult> {
 		compiler = new LuceneCompiler(service);
 	}
 
-	public SemanticIntention service(String service) throws Exception {
-		SemanticIntention intention = INTENTIONS.get(service);
-		if (intention == null) {
+	public SemanticMatching<YbnfCompileResult> service(String service) throws Exception {
+		SemanticMatching<YbnfCompileResult> matching = INTENTIONS.get(service);
+		if (matching == null) {
 			synchronized (INTENTIONS) {
-				if (intention == null) {
-					intention = new SemanticIntention(service);
-					INTENTIONS.put(service, intention);
+				matching = INTENTIONS.get(service);
+				if (matching == null) {
+					try {
+						matching = new SemanticIntention(service);
+					} catch (Exception e) {
+						matching = new ExternalSemanticIntention(service);
+					}
+					INTENTIONS.put(service, matching);
 				}
 			}
 		}
-		return intention;
+		return matching;
 	}
 
 	@Override

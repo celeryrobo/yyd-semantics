@@ -42,13 +42,13 @@ public class SemanticServiceImpl implements SemanticService {
 		} else {
 			// 切换场景则清空参数
 			if (!result.getService().equals(semanticContext.getService())) {
+				semanticContext.setService(result.getService()); // 重置场景
 				if (!semanticContext.getParams().isEmpty()) {
 					semanticContext.getParams().clear();
 				}
 			}
 			Semantic<?> semantic = semanticFactory.build(result.getService());
 			AbstractSemanticResult rs = semantic.handle(result, semanticContext);
-			semanticContext.setService(result.getService());
 			sr = new SemanticResult(rs.getErrCode(), rs.getErrMsg(), result, rs);
 		}
 		sr.setText(text);
