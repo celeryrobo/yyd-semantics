@@ -16,6 +16,7 @@ import com.yyd.semantic.common.impl.SemanticIntention;
 import com.yyd.semantic.common.impl.SemanticScene;
 import com.yyd.semantic.common.impl.WaringSemanticResult;
 import com.yyd.semantic.services.SemanticService;
+import com.yyd.service.domain.SemanticPostEntity;
 
 @Service
 @Scope("prototype")
@@ -28,6 +29,14 @@ public class SemanticServiceImpl implements SemanticService {
 	private SemanticScene semanticScene;
 	@Resource(name = "SemanticIntention")
 	private SemanticIntention semanticIntention;
+
+	@Override
+	public SemanticResult handleSemantic(SemanticPostEntity postEntity) throws Exception {
+		String lang = postEntity.getLang();
+		String userIdentify = postEntity.getUserIdentify();
+		semanticContext.setLocalVar(postEntity.getSemantic());
+		return handleSemantic(lang, userIdentify);
+	}
 
 	@Override
 	public SemanticResult handleSemantic(String text, String userIdentify) throws Exception {

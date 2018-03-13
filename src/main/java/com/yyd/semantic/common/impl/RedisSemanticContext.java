@@ -18,6 +18,7 @@ public class RedisSemanticContext implements SemanticContext {
 	private StringRedisTemplate redisTemplate;
 	private Map<Object, Object> attrs; // 上下文属性字典
 	private Map<Object, Object> params; // 语义槽参数字典
+	private Object localVar = null; // 当前会话的本地零时变量
 
 	@Override
 	public void loadByUserIdentify(String userIdentify) {
@@ -42,6 +43,16 @@ public class RedisSemanticContext implements SemanticContext {
 	@Override
 	public Map<Object, Object> getParams() {
 		return params;
+	}
+
+	@Override
+	public void setLocalVar(Object localVar) {
+		this.localVar = localVar;
+	}
+
+	@Override
+	public Object getLocalVar() {
+		return localVar;
 	}
 
 }

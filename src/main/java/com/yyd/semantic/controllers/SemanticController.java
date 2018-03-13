@@ -1,6 +1,6 @@
 package com.yyd.semantic.controllers;
 
-import java.util.Map;
+import java.util.concurrent.Callable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yyd.semantic.common.SemanticResult;
 import com.yyd.semantic.common.impl.WaringSemanticResult;
 import com.yyd.semantic.services.SemanticService;
+import com.yyd.service.domain.SemanticPostEntity;
 
 @RestController
 @Scope("prototype")
@@ -23,23 +24,26 @@ public class SemanticController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public SemanticResult get(@RequestParam String userIdentify, @RequestParam String lang) {
-		return handler(userIdentify, lang);
+		return handler(() -> {
+			return semanticService.handleSemantic(lang, userIdentify);
+		});
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public SemanticResult post(@RequestBody Map<String, Object> params) {
-		String userIdentify = (String) params.get("userIdentify");
-		String lang = (String) params.get("lang");
-		return handler(userIdentify, lang);
+	public SemanticResult post(@RequestBody SemanticPostEntity postEntity) {
+		return handler(() -> {
+			return semanticService.handleSemantic(postEntity);
+		});
 	}
 
-	private SemanticResult handler(String userIdentify, String lang) {
+	private SemanticResult handler(Callable<SemanticResult> callable) {
 		SemanticResult sr = null;
 		long start = System.currentTimeMillis();
 		try {
-			sr = semanticService.handleSemantic(lang, userIdentify);
+			sr = callable.call();
 		} catch (Exception e) {
 			sr = new SemanticResult(500, e.getMessage(), null, new WaringSemanticResult("哎呀，服务异常了！"));
+			e.printStackTrace();
 		}
 		sr.setTime(System.currentTimeMillis() - start);
 		return sr;
