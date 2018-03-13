@@ -1,0 +1,11 @@
+searchByName:
+  - '[[[我] 想|要] 听] $storyName [的] [故事]'
+  - '$storyName [的] [故事] [[[我] 想|要] 听]'
+searchByAlbum:
+  - '[[[我] 想|要] 听] $storyAlbum [故事]'
+  - '[说|讲|来] [个|一个] $storyAlbum [故事]'
+searchByCategory:
+  - '[[[我] 想|要] 听] $storyCategory [的] [故事]'
+searchRandom:
+  - '[说|讲|来|听] [个|一个] [好听的] 故事'
+  - '[[[我] 想|要] 听] 故事'
