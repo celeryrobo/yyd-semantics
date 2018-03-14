@@ -41,14 +41,12 @@ public class SemanticServiceImpl implements SemanticService {
 	@Override
 	public SemanticResult handleSemantic(String text, String userIdentify) throws Exception {
 		semanticContext.loadByUserIdentify(userIdentify);
-		YbnfCompileResult result = null;
-		if (text != null && !text.isEmpty()) {
-			result = parseSemantic(text, semanticContext.getService(), 0);
-		}
 		SemanticResult sr;
-		if (result == null) {
-			sr = new SemanticResult(404, "Match Fail!", result, new WaringSemanticResult("我听不懂你想说什么！"));
-		} else {
+		if (text != null && !text.isEmpty()) {
+			YbnfCompileResult result = parseSemantic(text, semanticContext.getService(), 0);
+			if (result == null) {
+				result = parseSemantic(text, "common", 0);
+			}
 			// 切换场景则清空参数
 			if (!result.getService().equals(semanticContext.getService())) {
 				semanticContext.setService(result.getService()); // 重置场景
@@ -59,6 +57,8 @@ public class SemanticServiceImpl implements SemanticService {
 			Semantic<?> semantic = semanticFactory.build(result.getService());
 			AbstractSemanticResult rs = semantic.handle(result, semanticContext);
 			sr = new SemanticResult(rs.getErrCode(), rs.getErrMsg(), result, rs);
+		} else {
+			sr = new SemanticResult(404, "Match Fail!", null, new WaringSemanticResult("我听不懂你想说什么！"));
 		}
 		sr.setText(text);
 		return sr;
