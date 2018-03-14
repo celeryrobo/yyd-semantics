@@ -9,6 +9,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import com.ybnf.semantic.SemanticContext;
+import com.yyd.service.common.RedisStringMap;
 
 @Component
 @Scope("prototype")
@@ -53,6 +54,11 @@ public class RedisSemanticContext implements SemanticContext {
 	@Override
 	public Object getLocalVar() {
 		return localVar;
+	}
+
+	@Override
+	public Map<Object, Object> getAttrs() {
+		return attrs;
 	}
 
 }
