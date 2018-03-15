@@ -1,11 +1,13 @@
 searchByAuthor:
-  - '[[[我] 想|要] 听|背|来|背诵] [首|个]|[一首|一个] $poetryAuthor [的] (诗|诗词)'
-  - '$poetryAuthor [的] (诗|诗词) [背|来|背诵] [首|个]|[一首|一个]'
+  - '[[[我] 想|要] 听|背|来|背诵|换] [首|个]|[一首|一个] $poetryAuthor [的] [诗|诗词]'
+  - '$poetryAuthor [的] (诗|诗词) [背|来|背诵|换] [首|个]|[一首|一个]'
 searchByTitle:
-  - '[[[我] 想|要] 听|背|来|背诵] [首|个]|[一首|一个] $poetryTitle'
-  - '$poetryTitle [背|来|背诵] [首|个]|[一首|一个]'
+  - '[[[我] 想|要] 听|背|来|背诵|换] [首|个]|[一首|一个] $poetryTitle'
+  - '$poetryTitle [背|来|背诵|换] [首|个]|[一首|一个]'
 searchByAuthorAndTitle:
-  - '[背|来|背诵] [首|个]|[一首|一个] $poetryAuthor [的] $poetryTitle'
+  - '[背|来|背诵|换] [首|个]|[一首|一个] $poetryAuthor [的] $poetryTitle'
+searchByRandom:
+  - '[[[我] 想|要] 听|背|来|背诵|换] [首|个]|[一首|一个] [诗|诗词]'
 nextSent:
   - '[[[我] 想|要] 听|背|背诵] $poetrySentence [的] [下句|下一句]'
 preSent:
