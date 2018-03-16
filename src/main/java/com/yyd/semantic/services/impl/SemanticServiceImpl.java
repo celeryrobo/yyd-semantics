@@ -42,7 +42,9 @@ public class SemanticServiceImpl implements SemanticService {
 	public SemanticResult handleSemantic(String text, String userIdentify) throws Exception {
 		semanticContext.loadByUserIdentify(userIdentify);
 		SemanticResult sr;
-		if (text != null && !text.isEmpty()) {
+		if (text == null || text.isEmpty()) {
+			sr = new SemanticResult(404, "Match Fail!", null, new WaringSemanticResult("我听不懂你想说什么！"));
+		} else {
 			YbnfCompileResult result = parseSemantic(text, semanticContext.getService(), 0);
 			if (result == null) {
 				result = parseSemantic(text, "common", 0);
@@ -57,8 +59,6 @@ public class SemanticServiceImpl implements SemanticService {
 			Semantic<?> semantic = semanticFactory.build(result.getService());
 			AbstractSemanticResult rs = semantic.handle(result, semanticContext);
 			sr = new SemanticResult(rs.getErrCode(), rs.getErrMsg(), result, rs);
-		} else {
-			sr = new SemanticResult(404, "Match Fail!", null, new WaringSemanticResult("我听不懂你想说什么！"));
 		}
 		sr.setText(text);
 		return sr;
