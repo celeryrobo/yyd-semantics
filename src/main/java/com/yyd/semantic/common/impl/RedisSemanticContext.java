@@ -25,7 +25,9 @@ public class RedisSemanticContext implements SemanticContext {
 	public void loadByUserIdentify(String userIdentify) {
 		String attrKeyname = "SEMANTIC:CONTEXT:ATTRS:USER:" + userIdentify;
 		attrs = new RedisStringMap(redisTemplate, attrKeyname);
-		attrs.put("userIdentify", userIdentify);
+		if (!attrs.containsKey("userIdentify")) {
+			attrs.put("userIdentify", userIdentify);
+		}
 		redisTemplate.expire(attrKeyname, timeout, TimeUnit.SECONDS);
 		String paramKeyname = "SEMANTIC:CONTEXT:PARAMS:USER:" + userIdentify;
 		params = new RedisStringMap(redisTemplate, paramKeyname);

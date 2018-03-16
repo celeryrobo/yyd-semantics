@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.ho.yaml.Yaml;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import com.yyd.service.utils.FileUtils;
 
 @Component("SemanticIntention")
 public class SemanticIntention implements SemanticMatching<YbnfCompileResult> {
+	private static final Logger LOG = Logger.getLogger(SemanticIntention.class.getSimpleName());
 	private final static Map<String, SemanticMatching<YbnfCompileResult>> INTENTIONS = new HashMap<>();
 	private static LuceneCompiler luceneCompiler = null;
 	private LuceneCompiler compiler = null;
@@ -70,12 +72,12 @@ public class SemanticIntention implements SemanticMatching<YbnfCompileResult> {
 		YbnfCompileResult result = null;
 		try {
 			long startTs = System.currentTimeMillis();
-			System.out.println("Text :" + text);
+			LOG.info("Text :" + text);
 			result = compiler.compile(text);
-			System.out.println("Semantic Intention Run Time :" + (System.currentTimeMillis() - startTs) + " Service :"
+			LOG.info("Semantic Intention Run Time :" + (System.currentTimeMillis() - startTs) + " Service :"
 					+ result.getService());
 		} catch (Exception e) {
-			System.err.println("语义处理失败！");
+			LOG.info("语义处理失败:" + e.getMessage());
 		}
 		return result;
 	}

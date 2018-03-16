@@ -1,5 +1,7 @@
 package com.yyd.semantic.common.impl;
 
+import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +12,7 @@ import com.yyd.semantic.common.SemanticMatching;
 
 @Component("SemanticScene")
 public class SemanticScene implements SemanticMatching<String> {
+	private static final Logger LOG = Logger.getLogger(SemanticScene.class.getSimpleName());
 	private static ICompiler compiler = null;
 
 	public SemanticScene(@Value("${mitie.feature.filename}") String feature,
@@ -24,9 +27,9 @@ public class SemanticScene implements SemanticMatching<String> {
 		YbnfCompileResult result = null;
 		try {
 			long startTs = System.currentTimeMillis();
-			System.out.println("Text :" + text);
+			LOG.info("Text :" + text);
 			result = compiler.compile(text);
-			System.out.println("Semantic Scene Run Time :" + (System.currentTimeMillis() - startTs) + " Service :"
+			LOG.info("Semantic Scene Run Time :" + (System.currentTimeMillis() - startTs) + " Service :"
 					+ result.getService());
 			if (result.getSlots().containsKey("service")) {
 				result.setService(result.getSlots().get("service"));
