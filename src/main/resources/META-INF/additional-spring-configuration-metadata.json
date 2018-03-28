@@ -8,5 +8,70 @@
     "name": "mitie.category.filename",
     "type": "java.lang.String",
     "description": "A description for 'mitie.category.filename'"
+  },
+  {
+    "name": "spring.druid.initial-size",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.druid.initial-size'"
+  },
+  {
+    "name": "spring.druid.min-idle",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.druid.min-idle'"
+  },
+  {
+    "name": "spring.druid.max-active",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.druid.max-active'"
+  },
+  {
+    "name": "spring.druid.max-wait",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.druid.max-wait'"
+  },
+  {
+    "name": "spring.druid.time-between-eviction-runs-millis",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.druid.time-between-eviction-runs-millis'"
+  },
+  {
+    "name": "spring.druid.min-evictable-idle-time-millis",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.druid.min-evictable-idle-time-millis'"
+  },
+  {
+    "name": "spring.druid.validation-query",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.druid.validation-query'"
+  },
+  {
+    "name": "spring.druid.test-while-idle",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.druid.test-while-idle'"
+  },
+  {
+    "name": "spring.druid.test-on-borrow",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.druid.test-on-borrow'"
+  },
+  {
+    "name": "spring.druid.test-on-return",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.druid.test-on-return'"
+  },
+  {
+    "name": "spring.druid.pool-prepared-statements",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.druid.pool-prepared-statements'"
+  },
+  {
+    "name": "spring.druid.max-pool-prepared-statement-per-connection-size",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.druid.max-pool-prepared-statement-per-connection-size'"
+  },
+  {
+    "name": "spring.druid.async-init",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.druid.async-init'"
   }
 ]}
