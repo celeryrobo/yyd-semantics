@@ -1,5 +1,5 @@
 searchByAuthor:
-  - '[[[我] 想|要] (听|背|来|背诵|换)] [[一] 首|个] $poetryAuthor 的诗 [词]'
+  - '[[[我] 想|要] (听|背|来|背诵|换)] [[一] 首|个] $poetryAuthor 的 [诗][词]'
   - '$poetryAuthor 的诗 [词] [背|来|背诵|换] [[一] 首|个]'
 searchByTitle:
   - '[[我] 想|要] (听|背|来|背诵|换) [[一] 首|个] $poetryTitle'
@@ -8,6 +8,9 @@ searchByAuthorAndTitle:
   - '[[我] 想|要] [听|背|来|背诵|换] [[一] 首|个] $poetryAuthor 的 $poetryTitle'
 searchByRandom:
   - '[[我] 想|要] (听|背|来|背诵|换) [[一] 首|个] 诗 [词]'
+searchBySent:
+  - '[[我] 想|要] (听|背|来|背诵|换) [[一] 首|个] [$poetryAuthor[的]] $poetrySentence [的] [诗|诗词|唐诗]'
+  - '[$poetryAuthor[的]] $poetrySentence (背|来|背诵|换) [一] 首|个'
 nextSent:
   - '[[[我] 想|要] 听|背|背诵] $poetrySentence [的] [下句|下一句]'
 preSent:
